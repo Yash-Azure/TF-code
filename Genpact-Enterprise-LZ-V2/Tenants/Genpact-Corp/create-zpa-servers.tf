@@ -1,0 +1,227 @@
+//ind Prod ZPA
+module "corp-rg-ind-prod-shared-management-zpa-servers" {
+  providers = {
+    azurerm = azurerm.ind-management-sub
+  }
+  source                           = "../../Modules/Create-Vms-marketplace"
+  resource_group_name              = azurerm_resource_group.ind-zpa-rgs[0].name
+  vm_hostname                      = "GCPLCINAZZPA"
+  vm_size                          = var.vm_prod_size
+  vm_os_publisher                  = var.vm_os_linux_zscaler_publisher
+  vm_os_offer                      = var.vm_os_linux_zscaler_offer
+  vm_os_sku                        = var.vm_os_linux_zscaler_sku
+  vnet_subnet_id                   = azurerm_subnet.corp-ind-prod-management-subnet[1].id
+  enable_ssh_key                   = false
+  admin_password                   = var.vm_password
+  nb_public_ip                     = 0
+  nb_instances                     = 2
+  diagnostic_sa                    = azurerm_storage_account.corpstorindpcorediag01.name
+  allocation_method                = "Static"
+  boot_diagnostics                 = true
+  data_disk_size_gb                = 256
+  delete_data_disks_on_termination = true
+  delete_os_disk_on_termination    = true
+  nb_data_disk                     = 1
+  data_sa_type                     = "Premium_LRS"
+  tags                             = local.vm_tags
+  depends_on                       = [azurerm_resource_group.ind-zpa-rgs]
+}
+//ind Dev ZPA
+module "corp-rg-ind-dev-shared-management-zpa-servers" {
+  providers = {
+    azurerm = azurerm.ind-management-sub
+  }
+  source                           = "../../Modules/Create-Vms-marketplace"
+  resource_group_name              = azurerm_resource_group.ind-zpa-rgs[1].name
+  vm_hostname                      = "GCDLCINAZZPA"
+  vm_size                          = var.vm_dev_size
+  vm_os_publisher                  = var.vm_os_linux_zscaler_publisher
+  vm_os_offer                      = var.vm_os_linux_zscaler_offer
+  vm_os_sku                        = var.vm_os_linux_zscaler_sku
+  vnet_subnet_id                   = azurerm_subnet.corp-ind-dev-management-subnet[1].id
+  enable_ssh_key                   = false
+  admin_password                   = var.vm_password
+  nb_public_ip                     = 0
+  nb_instances                     = 1
+  diagnostic_sa                    = azurerm_storage_account.corpstorinddcorediag01.name
+  allocation_method                = "Static"
+  boot_diagnostics                 = true
+  data_disk_size_gb                = 256
+  delete_data_disks_on_termination = true
+  delete_os_disk_on_termination    = true
+  nb_data_disk                     = 1
+  data_sa_type                     = "Standard_LRS"
+  tags                             = local.vm_tags
+  depends_on                       = [azurerm_resource_group.ind-zpa-rgs]
+}
+// NEU Region
+// neu Prod ZPA
+module "corp-rg-neu-prod-shared-management-zpa-servers" {
+  providers = {
+    azurerm = azurerm.neu-management-sub
+  }
+  source                           = "../../Modules/Create-Vms-marketplace"
+  resource_group_name              = azurerm_resource_group.neu-zpa-rgs[0].name
+  vm_hostname                      = "GCPLNEUAZZPA"
+  vm_size                          = var.vm_prod_size
+  vm_os_publisher                  = var.vm_os_linux_zscaler_publisher
+  vm_os_offer                      = var.vm_os_linux_zscaler_offer
+  vm_os_sku                        = var.vm_os_linux_zscaler_sku
+  vnet_subnet_id                   = azurerm_subnet.corp-neu-prod-management-subnet[1].id
+  enable_ssh_key                   = false
+  admin_password                   = var.vm_password
+  nb_public_ip                     = 0
+  nb_instances                     = 2
+  diagnostic_sa                    = azurerm_storage_account.corpstorneupcorediag01.name
+  allocation_method                = "Static"
+  boot_diagnostics                 = true
+  data_disk_size_gb                = 256
+  delete_data_disks_on_termination = true
+  delete_os_disk_on_termination    = true
+  nb_data_disk                     = 1
+  data_sa_type                     = "Premium_LRS"
+  tags                             = local.vm_tags
+  depends_on                       = [azurerm_resource_group.neu-zpa-rgs]
+}
+//neu Dev ZPA
+module "corp-rg-neu-dev-shared-management-zpa-servers" {
+  providers = {
+    azurerm = azurerm.neu-management-sub
+  }
+  source                           = "../../Modules/Create-Vms-marketplace"
+  resource_group_name              = azurerm_resource_group.neu-zpa-rgs[1].name
+  vm_hostname                      = "GCDLNEUAZZPA"
+  vm_size                          = var.vm_dev_size
+  vm_os_publisher                  = var.vm_os_linux_zscaler_publisher
+  vm_os_offer                      = var.vm_os_linux_zscaler_offer
+  vm_os_sku                        = var.vm_os_linux_zscaler_sku
+  vnet_subnet_id                   = azurerm_subnet.corp-neu-dev-management-subnet[1].id
+  enable_ssh_key                   = false
+  admin_password                   = var.vm_password
+  nb_public_ip                     = 0
+  nb_instances                     = 1
+  diagnostic_sa                    = azurerm_storage_account.corpstorneudcorediag01.name
+  allocation_method                = "Static"
+  boot_diagnostics                 = true
+  data_disk_size_gb                = 256
+  delete_data_disks_on_termination = true
+  delete_os_disk_on_termination    = true
+  nb_data_disk                     = 1
+  data_sa_type                     = "Standard_LRS"
+  tags                             = local.vm_tags
+  depends_on                       = [azurerm_resource_group.neu-zpa-rgs]
+}
+//EUS Region
+// eus Prod ZPA
+module "corp-rg-eus-prod-shared-management-zpa-servers" {
+  providers = {
+    azurerm = azurerm.eus-management-sub
+  }
+  source                           = "../../Modules/Create-Vms-marketplace"
+  resource_group_name              = azurerm_resource_group.eus-zpa-rgs[0].name
+  vm_hostname                      = "GCPLEUSAZZPA"
+  vm_size                          = var.vm_prod_size
+  vm_os_publisher                  = var.vm_os_linux_zscaler_publisher
+  vm_os_offer                      = var.vm_os_linux_zscaler_offer
+  vm_os_sku                        = var.vm_os_linux_zscaler_sku
+  vnet_subnet_id                   = azurerm_subnet.corp-eus-prod-management-subnet[1].id
+  enable_ssh_key                   = false
+  admin_password                   = var.vm_password
+  nb_public_ip                     = 0
+  nb_instances                     = 2
+  diagnostic_sa                    = azurerm_storage_account.corpstoreuspcorediag01.name
+  allocation_method                = "Static"
+  boot_diagnostics                 = true
+  data_disk_size_gb                = 256
+  delete_data_disks_on_termination = true
+  delete_os_disk_on_termination    = true
+  nb_data_disk                     = 1
+  data_sa_type                     = "Premium_LRS"
+  tags                             = local.vm_tags
+  depends_on                       = [azurerm_resource_group.eus-zpa-rgs]
+}
+//eus Dev ZPA
+module "corp-rg-eus-dev-shared-management-zpa-servers" {
+  providers = {
+    azurerm = azurerm.eus-management-sub
+  }
+  source                           = "../../Modules/Create-Vms-marketplace"
+  resource_group_name              = azurerm_resource_group.eus-zpa-rgs[1].name
+  vm_hostname                      = "GCDLEUSAZZPA"
+  vm_size                          = var.vm_dev_size
+  vm_os_publisher                  = var.vm_os_linux_zscaler_publisher
+  vm_os_offer                      = var.vm_os_linux_zscaler_offer
+  vm_os_sku                        = var.vm_os_linux_zscaler_sku
+  vnet_subnet_id                   = azurerm_subnet.corp-eus-dev-management-subnet[1].id
+  enable_ssh_key                   = false
+  admin_password                   = var.vm_password
+  nb_public_ip                     = 0
+  nb_instances                     = 1
+  diagnostic_sa                    = azurerm_storage_account.corpstoreusdcorediag01.name
+  allocation_method                = "Static"
+  boot_diagnostics                 = true
+  data_disk_size_gb                = 256
+  delete_data_disks_on_termination = true
+  delete_os_disk_on_termination    = true
+  nb_data_disk                     = 1
+  data_sa_type                     = "Standard_LRS"
+  tags                             = local.vm_tags
+  depends_on                       = [azurerm_resource_group.eus-zpa-rgs]
+}
+//WUS Region
+// wus Prod ZPA
+module "corp-rg-wus-prod-shared-management-zpa-servers" {
+  providers = {
+    azurerm = azurerm.wus-management-sub
+  }
+  source                           = "../../Modules/Create-Vms-marketplace"
+  resource_group_name              = azurerm_resource_group.wus-zpa-rgs[0].name
+  vm_hostname                      = "GCPLWUSAZZPA"
+  vm_size                          = var.vm_prod_size
+  vm_os_publisher                  = var.vm_os_linux_zscaler_publisher
+  vm_os_offer                      = var.vm_os_linux_zscaler_offer
+  vm_os_sku                        = var.vm_os_linux_zscaler_sku
+  vnet_subnet_id                   = azurerm_subnet.corp-wus-prod-management-subnet[1].id
+  enable_ssh_key                   = false
+  admin_password                   = var.vm_password
+  nb_public_ip                     = 0
+  nb_instances                     = 2
+  diagnostic_sa                    = azurerm_storage_account.corpstorwuspcorediag01.name
+  allocation_method                = "Static"
+  boot_diagnostics                 = true
+  data_disk_size_gb                = 256
+  delete_data_disks_on_termination = true
+  delete_os_disk_on_termination    = true
+  nb_data_disk                     = 1
+  data_sa_type                     = "Premium_LRS"
+  tags                             = local.vm_tags
+  depends_on                       = [azurerm_resource_group.wus-zpa-rgs]
+}
+//wus Dev ZPA
+module "corp-rg-wus-dev-shared-management-zpa-servers" {
+  providers = {
+    azurerm = azurerm.wus-management-sub
+  }
+  source                           = "../../Modules/Create-Vms-marketplace"
+  resource_group_name              = azurerm_resource_group.wus-zpa-rgs[1].name
+  vm_hostname                      = "GCDLWUSAZZPA"
+  vm_size                          = var.vm_dev_size
+  vm_os_publisher                  = var.vm_os_linux_zscaler_publisher
+  vm_os_offer                      = var.vm_os_linux_zscaler_offer
+  vm_os_sku                        = var.vm_os_linux_zscaler_sku
+  vnet_subnet_id                   = azurerm_subnet.corp-wus-dev-management-subnet[1].id
+  enable_ssh_key                   = false
+  admin_password                   = var.vm_password
+  nb_public_ip                     = 0
+  nb_instances                     = 1
+  diagnostic_sa                    = azurerm_storage_account.corpstorwusdcorediag01.name
+  allocation_method                = "Static"
+  boot_diagnostics                 = true
+  data_disk_size_gb                = 256
+  delete_data_disks_on_termination = true
+  delete_os_disk_on_termination    = true
+  nb_data_disk                     = 1
+  data_sa_type                     = "Standard_LRS"
+  tags                             = local.vm_tags
+  depends_on                       = [azurerm_resource_group.wus-zpa-rgs]
+}
